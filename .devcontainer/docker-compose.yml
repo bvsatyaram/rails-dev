@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    command: sleep infinity
+    container_name: rails-dev-app
+    depends_on:
+      - db
+      - redis
+    environment:
+      - 'EDITOR=code --wait'
+      - 'HISTFILE=/root/bash_history/.bash_history'
+      - 'RAILS_ENV=development'
+      - 'RAILS_DATABASE_HOST=db'
+      - 'REDIS_URL=redis://redis:6379'
+      - 'SOURCE_PATH=${PWD}'
+    labels:
+      dev.rails.description: "Rails Dev App"
+    volumes:
+      - bundle_cache:/bundle
+      - bash_history:/root/bash_history
+      - ./fonts/MesloLGS:/usr/share/fonts/meslolgs_ng
+
+  db:
+    container_name: rails-dev-db
+    image: postgres:latest
+    environment:
+      - 'POSTGRES_USER=rails'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_DB=rails'
+    labels:
+      dev.rails.description: "Rails Dev DB"
+    restart: unless-stopped
+    volumes:
+      - "rails-dev-dbdata:/var/lib/postgresql/data"
+
+  redis:
+    image: redis:alpine
+    container_name: rails-dev-redis
+    labels:
+      dev.rails.description: "Rails Dev Redis"
+
+volumes:
+  rails-dev-dbdata:
+  bash_history:
+  bundle_cache:
+  postgres-data:

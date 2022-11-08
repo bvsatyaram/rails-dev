@@ -1,0 +1,54 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/ruby-rails-postgres
+{
+  "name": "Rails Dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "settings": {
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[ruby]": {
+      "editor.defaultFormatter": "misogi.ruby-rubocop"
+    },
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "emmet.triggerExpansionOnTab": true,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    // "solargraph.commandPath": "/bundle/bin/solargraph",
+    // "solargraph.bundlerPath": "/bundle",
+    // "ruby.rubocop.onSave": true,
+    // "terminal.integrated.automationShell.linux": "/bin/sh",
+    // "terminal.integrated.automationProfile.linux": "zsh",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.fontFamily": "MesloLGS NF"
+  },
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+	"rebornix.Ruby",
+  "misogi.ruby-rubocop",
+	"esbenp.prettier-vscode",
+	"kirillplatonov.erb-toggle",
+  "castwide.solargraph",
+	"eamodio.gitlens",
+	"bradlc.vscode-tailwindcss",
+	"github.copilot",
+	"karunamurti.haml"
+],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [3000, 3035, 5432, 6379],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "bundle install --binstubs=\"$BUNDLE_BIN\" --jobs $(nproc) --retry 5 && yarn install && rake db:prepare",
+  // "postCreateCommand": "bundle config --local without \"staging production omit\" && bundle install --binstubs=\"$BUNDLE_BIN\" --jobs $(nproc) --retry 5 &&  && yarn install && bin/rails db:prepare",
+  // "postCreateCommand": "bin/setup",
+  // "postStartCommand": "bin/dev"
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  // "remoteUser": "vscode"
+}
